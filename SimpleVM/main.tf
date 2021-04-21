@@ -26,7 +26,7 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template_from_ovf" {
-    name          = "ubuntu1804template"
+    name          = "ubuntu-focal-20.04-cloudimg"
     datacenter_id = data.vsphere_datacenter.dc.id
 }
 
@@ -50,11 +50,28 @@ resource vsphere_virtual_machine "vm1" {
     disk {
         label = "disk0"
         size  = 20
+        unit_number = 0
     }
-
+    disk {
+        label = "diskextra"
+        attach = true
+        path = vsphere_virtual_disk.disk_extra.vmdk_path
+        unit_number = 1
+        datastore_id = data.vsphere_datastore.datastore.id
+    }
+   
     clone {
         template_uuid = data.vsphere_virtual_machine.template_from_ovf.id
     }
+}
+
+resource "vsphere_virtual_disk" "disk_extra" {
+  size       = 2
+  vmdk_path  = "extra.vmdk"
+  datastore = data.vsphere_datastore.datastore.name
+  datacenter = data.vsphere_datacenter.dc.name
+  
+  type       = "thin"
 }
 
 output "vm_ip_addr" {

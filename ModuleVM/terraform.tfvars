@@ -1,0 +1,6 @@
+datacenter_name     = "HomeLabWorkload"
+cluster_name        = "workload"
+datastore_name      = "datastore1"
+vsphere_user        = "admin@vsphere.local"
+vsphere_password    = "VMware1!"
+vsphere_server      = "vcsa-01.linoproject.lab"
