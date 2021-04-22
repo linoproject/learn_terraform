@@ -1,6 +1,6 @@
 vsphere_env = {
-    user     = "administrator@vsphere.local"
-    password = "Password01!"
+    user     = "admin@vsphere.local"
+    password = "VMware1!"
     server   = "vcsa-01.linoproject.lab"
 }
 datacenter_name     = "HomeLabWorkload"
