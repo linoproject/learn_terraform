@@ -18,4 +18,9 @@ vms = {
         vMEM = 512
         vmname = "vm2"
     }
+    vm3 = {
+        vCPU = 1
+        vMEM = 512
+        vmname = "vm3"
+    }
 }
